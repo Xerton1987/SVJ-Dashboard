@@ -10,7 +10,7 @@ const protectedRoutes = [
   "/nastaveni",
 ];
 
-export default auth(function middleware(req: NextRequest & { auth: unknown }) {
+export default auth(function proxy(req: NextRequest & { auth: unknown }) {
   const { nextUrl } = req;
   const session = (req as { auth: { user?: { id?: string } } | null }).auth;
   const isLoggedIn = !!session?.user?.id;

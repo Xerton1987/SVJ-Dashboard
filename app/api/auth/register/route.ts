@@ -3,6 +3,8 @@ import { z } from "zod";
 import bcryptjs from "bcryptjs";
 import { db } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 const registerSchema = z.object({
   jmeno: z.string().min(1),
   prijmeni: z.string().min(1),
