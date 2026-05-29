@@ -55,7 +55,7 @@ export default async function ClenovePageComponent() {
             {members.length === 0 ? (
               <p className="text-sm text-muted-foreground">Žádní členové nenalezeni</p>
             ) : (
-              members.map((m) => (
+              members.map((m: (typeof members)[number]) => (
                 <div
                   key={m.id}
                   className="flex items-center justify-between rounded-lg border p-3"

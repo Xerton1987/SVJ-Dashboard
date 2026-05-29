@@ -74,7 +74,7 @@ export default async function JednotkyPage() {
                     </TableCell>
                   </TableRow>
                 ) : (
-                  units.map((unit) => (
+                  units.map((unit: (typeof units)[number]) => (
                     <TableRow key={unit.id}>
                       <TableCell>
                         <Link

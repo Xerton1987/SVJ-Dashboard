@@ -84,7 +84,7 @@ export default async function DashboardHomePage() {
             <p className="text-sm text-muted-foreground">Zatím žádná aktivita.</p>
           ) : (
             <ul className="space-y-3">
-              {recentLogs.map((log) => (
+              {recentLogs.map((log: (typeof recentLogs)[number]) => (
                 <li key={log.id} className="flex items-start gap-3 text-sm">
                   <span className="mt-0.5 rounded bg-primary/10 px-1.5 py-0.5 text-xs font-medium text-primary">
                     {log.action}

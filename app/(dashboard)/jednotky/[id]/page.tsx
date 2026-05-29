@@ -104,7 +104,7 @@ export default async function JednotkaDetailPage({ params }: PageProps) {
             {activeOwnerships.length === 0 ? (
               <p className="text-muted-foreground">Žádní vlastníci</p>
             ) : (
-              activeOwnerships.map((o) => (
+              activeOwnerships.map((o: (typeof activeOwnerships)[number]) => (
                 <div key={o.id} className="rounded border p-2">
                   <div className="font-medium">{o.user.name ?? o.user.email}</div>
                   <div className="text-muted-foreground">{o.user.email}</div>
@@ -125,7 +125,7 @@ export default async function JednotkaDetailPage({ params }: PageProps) {
             <CardTitle className="text-base">Nájemníci</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
-            {unit.tenancies.map((t) => (
+            {unit.tenancies.map((t: (typeof unit.tenancies)[number]) => (
               <div key={t.id} className="rounded border p-2">
                 <div className="font-medium">{t.user.name ?? t.user.email}</div>
                 <div className="text-muted-foreground">{t.user.email}</div>
@@ -146,7 +146,7 @@ export default async function JednotkaDetailPage({ params }: PageProps) {
           <CardContent className="space-y-2 text-sm">
             {unit.ownerships
               .filter((o) => o.validTo)
-              .map((o) => (
+              .map((o: (typeof unit.ownerships)[number]) => (
                 <div key={o.id} className="rounded border p-2 opacity-60">
                   <div className="font-medium">{o.user.name ?? o.user.email}</div>
                   <div className="text-xs text-muted-foreground">
