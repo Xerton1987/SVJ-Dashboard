@@ -123,6 +123,8 @@ export async function getSvj(svjId: string) {
   }
 
   try {
+    await requireRole(svjId, MemberRole.MEMBER, MemberRole.TENANT, MemberRole.COMMITTEE_MEMBER, MemberRole.COMMITTEE_CHAIR, MemberRole.EXTERNAL_MANAGER, MemberRole.AUDITOR, MemberRole.GUEST);
+
     const svj = await db.svj.findUnique({
       where: { id: svjId },
       include: { buildings: { include: { entrances: { include: { units: true } } } } },

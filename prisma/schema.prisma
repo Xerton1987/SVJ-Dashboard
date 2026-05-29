@@ -4,6 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 // ─── Enums ────────────────────────────────────────────────────────────────────
@@ -187,6 +188,8 @@ model UnitOwnership {
 
   @@index([unitId])
   @@index([userId])
+  // Prevents duplicate active ownerships; partial unique enforced at app level since Prisma doesn't support partial indexes
+  @@index([unitId, userId])
 }
 
 model Membership {
