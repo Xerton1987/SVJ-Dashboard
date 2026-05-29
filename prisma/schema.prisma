@@ -1,0 +1,240 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum MemberRole {
+  MEMBER
+  TENANT
+  COMMITTEE_MEMBER
+  COMMITTEE_CHAIR
+  EXTERNAL_MANAGER
+  AUDITOR
+  GUEST
+}
+
+enum UnitType {
+  BYT
+  NEBYT
+  GARAZ
+  SKLEP
+  SPOL_PROSTOR
+}
+
+enum PreferredLanguage {
+  CS
+  EN
+  UK
+  DE
+}
+
+enum OwnershipSource {
+  MANUAL
+  KN_IMPORT
+}
+
+// ─── Auth.js required models ──────────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  accounts      Account[]
+  sessions      Session[]
+
+  // SVJ-specific fields
+  telefon           String?
+  jmeno             String?
+  prijmeni          String?
+  icOsoby           String?
+  bankidSubjectId   String?
+  isActive          Boolean           @default(true)
+  preferredLanguage PreferredLanguage @default(CS)
+  notificationEmail Boolean           @default(true)
+  notificationPush  Boolean           @default(false)
+  notificationSms   Boolean           @default(false)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  memberships Membership[]
+  ownerships  UnitOwnership[]
+  tenancies   Tenant[]
+  auditLogs   AuditLog[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ─── SVJ domain models ────────────────────────────────────────────────────────
+
+model Svj {
+  id                String   @id @default(cuid())
+  ico               String   @unique
+  dic               String?
+  nazev             String
+  sidlo             String
+  datovkaSchrankaId String?
+  stanovyDocId      String?
+  predsedaUserId    String?
+  bankAccountIban   String?
+  bankAccountPrefix String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  buildings   Building[]
+  memberships Membership[]
+  auditLogs   AuditLog[]
+
+  @@index([ico])
+}
+
+model Building {
+  id            String  @id @default(cuid())
+  svjId         String
+  adresa        String
+  popiscneCislo String?
+  parcelaKn     String?
+  pocetJednotek Int     @default(0)
+
+  svj       Svj        @relation(fields: [svjId], references: [id], onDelete: Cascade)
+  entrances Entrance[]
+
+  @@index([svjId])
+}
+
+model Entrance {
+  id         String  @id @default(cuid())
+  buildingId String
+  cislo      String
+  popis      String?
+
+  building Building @relation(fields: [buildingId], references: [id], onDelete: Cascade)
+  units    Unit[]
+
+  @@index([buildingId])
+}
+
+model Unit {
+  id                     String   @id @default(cuid())
+  entranceId             String
+  cisloJednotkyKn        String
+  plochaMq               Decimal  @db.Decimal(15, 2)
+  spoluvlPodilCitatel    Int
+  spoluvlPodilJmenovatel Int
+  typ                    UnitType @default(BYT)
+  pocetOsob              Int      @default(0)
+
+  entrance   Entrance        @relation(fields: [entranceId], references: [id], onDelete: Cascade)
+  ownerships UnitOwnership[]
+  tenancies  Tenant[]
+
+  @@index([cisloJednotkyKn])
+  @@index([entranceId])
+}
+
+model UnitOwnership {
+  id              String          @id @default(cuid())
+  unitId          String
+  userId          String
+  podilCitatel    Int
+  podilJmenovatel Int
+  validFrom       DateTime        @default(now())
+  validTo         DateTime?
+  source          OwnershipSource @default(MANUAL)
+
+  unit Unit @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([unitId])
+  @@index([userId])
+}
+
+model Membership {
+  id              String     @id @default(cuid())
+  userId          String
+  svjId           String
+  role            MemberRole
+  grantedByUserId String?
+  grantedAt       DateTime   @default(now())
+  revokedAt       DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  svj  Svj  @relation(fields: [svjId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, svjId, role])
+  @@index([svjId])
+  @@index([userId])
+}
+
+model Tenant {
+  id                String    @id @default(cuid())
+  unitId            String
+  userId            String
+  validFrom         DateTime  @default(now())
+  validTo           DateTime?
+  notifyOutagesOnly Boolean   @default(true)
+
+  unit Unit @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([unitId])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  svjId      String?
+  userId     String?
+  action     String
+  entityType String
+  entityId   String?
+  payload    Json?
+  ip         String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+
+  svj  Svj?  @relation(fields: [svjId], references: [id], onDelete: SetNull)
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([svjId, createdAt])
+  @@index([svjId, entityType, entityId])
+}

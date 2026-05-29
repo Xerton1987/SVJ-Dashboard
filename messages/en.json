@@ -1,0 +1,128 @@
+{
+  "common": {
+    "appName": "SVJ Dashboard",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "back": "Back",
+    "next": "Next",
+    "search": "Search",
+    "noData": "No data",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm"
+  },
+  "nav": {
+    "home": "Home",
+    "finance": "Finance",
+    "board": "Board",
+    "voting": "Voting",
+    "more": "More",
+    "units": "Units",
+    "members": "Members",
+    "import": "Import",
+    "settings": "Settings"
+  },
+  "auth": {
+    "login": "Sign in",
+    "logout": "Sign out",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phone": "Phone",
+    "loginTitle": "Sign in to SVJ Dashboard",
+    "registerTitle": "Register for SVJ Dashboard",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "invalidCredentials": "Invalid email or password",
+    "passwordMismatch": "Passwords do not match"
+  },
+  "dashboard": {
+    "welcome": "Welcome to SVJ Dashboard",
+    "overview": "Overview",
+    "unitCount": "Unit count",
+    "memberCount": "Member count",
+    "recentActivity": "Recent activity",
+    "noActivity": "No activity yet"
+  },
+  "units": {
+    "title": "Units",
+    "unitNumber": "Unit number",
+    "area": "Area (m²)",
+    "type": "Type",
+    "owners": "Owners",
+    "share": "Co-ownership share",
+    "persons": "Persons",
+    "detail": "Unit detail",
+    "entrance": "Entrance",
+    "types": {
+      "BYT": "Apartment",
+      "NEBYT": "Non-residential",
+      "GARAZ": "Garage",
+      "SKLEP": "Cellar",
+      "SPOL_PROSTOR": "Common area"
+    }
+  },
+  "members": {
+    "title": "Members",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "role": "Role",
+    "since": "Member since",
+    "roles": {
+      "MEMBER": "Member",
+      "TENANT": "Tenant",
+      "COMMITTEE_MEMBER": "Committee member",
+      "COMMITTEE_CHAIR": "Committee chair",
+      "EXTERNAL_MANAGER": "External manager",
+      "AUDITOR": "Auditor",
+      "GUEST": "Guest"
+    }
+  },
+  "import": {
+    "title": "Import owners",
+    "description": "Import unit owners from a CSV file. Format: unit,name,share,email,phone",
+    "dragDrop": "Drag and drop a file here or click to select",
+    "csvFormat": "CSV format: unit, name, share (e.g. 1/3), email, phone",
+    "preview": "Data preview",
+    "errors": "Errors",
+    "import": "Import",
+    "success": "Import successful",
+    "noFile": "No file selected",
+    "invalidFormat": "Invalid file format"
+  },
+  "settings": {
+    "title": "SVJ Settings",
+    "ico": "Company ID (IČO)",
+    "dic": "VAT number (DIČ)",
+    "name": "SVJ name",
+    "address": "Address",
+    "bankAccount": "Bank account number",
+    "iban": "IBAN",
+    "dataBox": "Data mailbox",
+    "chairman": "Committee chairman",
+    "save": "Save settings"
+  },
+  "onboarding": {
+    "title": "Welcome! First, create your SVJ",
+    "description": "To get started, please enter basic information about your SVJ",
+    "ico": "Company ID (IČO)",
+    "name": "SVJ name",
+    "address": "Address",
+    "create": "Create SVJ",
+    "icoHelp": "8-digit company ID from the business register"
+  },
+  "errors": {
+    "unauthorized": "Not authenticated",
+    "forbidden": "Insufficient permissions",
+    "notFound": "Record not found",
+    "serverError": "Server error. Please try again."
+  }
+}

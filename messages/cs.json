@@ -1,0 +1,128 @@
+{
+  "common": {
+    "appName": "SVJ Dashboard",
+    "loading": "Načítání...",
+    "save": "Uložit",
+    "cancel": "Zrušit",
+    "delete": "Smazat",
+    "edit": "Upravit",
+    "create": "Vytvořit",
+    "back": "Zpět",
+    "next": "Další",
+    "search": "Hledat",
+    "noData": "Žádná data",
+    "error": "Chyba",
+    "success": "Úspěch",
+    "confirm": "Potvrdit"
+  },
+  "nav": {
+    "home": "Domů",
+    "finance": "Finance",
+    "board": "Nástěnka",
+    "voting": "Hlasování",
+    "more": "Více",
+    "units": "Jednotky",
+    "members": "Členové",
+    "import": "Import",
+    "settings": "Nastavení"
+  },
+  "auth": {
+    "login": "Přihlásit se",
+    "logout": "Odhlásit se",
+    "register": "Registrovat se",
+    "email": "E-mail",
+    "password": "Heslo",
+    "confirmPassword": "Potvrzení hesla",
+    "firstName": "Jméno",
+    "lastName": "Příjmení",
+    "phone": "Telefon",
+    "loginTitle": "Přihlášení do SVJ Dashboard",
+    "registerTitle": "Registrace do SVJ Dashboard",
+    "noAccount": "Nemáte účet?",
+    "hasAccount": "Již máte účet?",
+    "invalidCredentials": "Nesprávný e-mail nebo heslo",
+    "passwordMismatch": "Hesla se neshodují"
+  },
+  "dashboard": {
+    "welcome": "Vítejte v SVJ Dashboard",
+    "overview": "Přehled",
+    "unitCount": "Počet jednotek",
+    "memberCount": "Počet členů",
+    "recentActivity": "Nedávná aktivita",
+    "noActivity": "Zatím žádná aktivita"
+  },
+  "units": {
+    "title": "Jednotky",
+    "unitNumber": "Číslo jednotky",
+    "area": "Plocha (m²)",
+    "type": "Typ",
+    "owners": "Vlastníci",
+    "share": "Spoluvlastnický podíl",
+    "persons": "Počet osob",
+    "detail": "Detail jednotky",
+    "entrance": "Vchod",
+    "types": {
+      "BYT": "Byt",
+      "NEBYT": "Nebytový prostor",
+      "GARAZ": "Garáž",
+      "SKLEP": "Sklep",
+      "SPOL_PROSTOR": "Společný prostor"
+    }
+  },
+  "members": {
+    "title": "Členové",
+    "name": "Jméno",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "role": "Role",
+    "since": "Člen od",
+    "roles": {
+      "MEMBER": "Člen",
+      "TENANT": "Nájemník",
+      "COMMITTEE_MEMBER": "Člen výboru",
+      "COMMITTEE_CHAIR": "Předseda výboru",
+      "EXTERNAL_MANAGER": "Externí správce",
+      "AUDITOR": "Revizor",
+      "GUEST": "Host"
+    }
+  },
+  "import": {
+    "title": "Import vlastníků",
+    "description": "Importujte vlastníky jednotek ze souboru CSV. Formát: jednotka,jmeno,podil,email,telefon",
+    "dragDrop": "Přetáhněte soubor sem nebo klikněte pro výběr",
+    "csvFormat": "Formát CSV: jednotka, jméno, podíl (např. 1/3), e-mail, telefon",
+    "preview": "Náhled dat",
+    "errors": "Chyby",
+    "import": "Importovat",
+    "success": "Import byl úspěšný",
+    "noFile": "Nebyl vybrán žádný soubor",
+    "invalidFormat": "Neplatný formát souboru"
+  },
+  "settings": {
+    "title": "Nastavení SVJ",
+    "ico": "IČO",
+    "dic": "DIČ",
+    "name": "Název SVJ",
+    "address": "Sídlo",
+    "bankAccount": "Číslo bankovního účtu",
+    "iban": "IBAN",
+    "dataBox": "Datová schránka",
+    "chairman": "Předseda výboru",
+    "save": "Uložit nastavení"
+  },
+  "onboarding": {
+    "title": "Vítejte! Nejprve vytvořte SVJ",
+    "description": "Pro začátek prosím zadejte základní informace o vašem SVJ",
+    "ico": "IČO",
+    "name": "Název SVJ",
+    "address": "Sídlo (adresa)",
+    "create": "Vytvořit SVJ",
+    "icoHelp": "8-místné IČO ze živnostenského rejstříku"
+  },
+  "errors": {
+    "unauthorized": "Nejste přihlášeni",
+    "forbidden": "Nemáte dostatečná oprávnění",
+    "notFound": "Záznam nebyl nalezen",
+    "serverError": "Chyba serveru. Zkuste to prosím znovu."
+  }
+}
